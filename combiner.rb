@@ -9,69 +9,61 @@ class WordlistParser
   Version = "1.0.0"
 
   OUTPUT = {stdout: true, file: false}
-  attr_accessor :file1, :file2, :combined_file
 
   class ScriptOptions
 
-    attr_accessor :verbose, :encoding
-    def initialize(parser)
+    attr_accessor :file1, :file2, :file3, :verbose, :encoding
+    def initialize
       self.verbose = true
       self.encoding = "utf8"
-      binding.pry
     end
 
     def define_options(parser)
       parser.banner = "Usage: examble.rb -l1 file1 -l2 file2"
       parser.seperator=""
 
-      self.file1 = file1(parser)
-      self.file2 = file2(parser)
+      file1(parser)
+      file2(parser)
+      binding.pry
 
-       parser.on_tail("--version", "Show version") do
+      parser.on_tail("--version", "Show version") do
           puts Version
           exit
       end
+      self
     end
 
     def file1(parser)
-      parser.on("-l1", "--file1 FILE1") do file1
-        return file1
+      parser.on("-l1", "--file1 FILE1") do |file1|
+        self.file1 = file1
       end
     end
 
     def file2(parser)
-      parser.on("-l2", "--file2 FILE2") do file2
-        return file2
+      parser.on("-l2", "--file2 FILE2") do |file2|
+        self.file2 = file2
       end
     end
   end
 
-  def parse(args)
-    @options = ScriptOptions.new
-    @args = WordlistParser.new do |parser|
-      @options.define_options(parser)
-      parser.parse!(args)
+  def parse(*args)
+    options = OptionParser.new do |parser|
+      parser.define_options(options)
     end
-    @options
-  end
-
-  def generate_new
-    file = File.new( "output-wordlist.txt", "w")
-    file.chmod( 0755 )
-    IO.foreach(self.file1) do |l|
-      IO.foreach(self.file2) do |w|
-        file.write(l + ':' + w + '\n')
-      end
-    end
-  file.close
+   options 
   end
 
 end # Class WordlistParser
 
-wordlist = WordlistParser.new(
+wordlist = WordlistParser.new
 options = wordlist.parse(ARGV)
-puts wordlist.file1
-puts wordlist.file2
+# file = File.new( "output-wordlist.txt", "w")
+# file.chmod( 0755 )
+# IO.foreach(options.file1) do |l|
+ #  IO.foreach(options.file2) do |w|
+      # file.write(l + ':' + w + '\n')
+  # end
+#jend
+#file.close
 
-wordlist.generate_new
 
