@@ -13,6 +13,7 @@ Combines two wordlists into one
  users.txt 
 -------------
 
+---------
 | admin |
 | root  |
 | info  |
@@ -21,6 +22,7 @@ Combines two wordlists into one
  passwords.txt 
 -----------------
 
+--------
 | 1245 |
 | 123456 |
 | pass123 |
@@ -31,7 +33,8 @@ Generates into a format thats easily enumerated when using Hydra THC, Burp Intru
 
  combined.txt 
 ----------------
-
+|            |
+:------------:
 | admin:1235 |
 | admin:123456 |
 |admin:pass123 |
