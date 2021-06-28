@@ -24,7 +24,6 @@ class WordlistParser
 
       file1(parser)
       file2(parser)
-      binding.pry
 
       parser.on_tail("--version", "Show version") do
           puts Version
@@ -34,14 +33,14 @@ class WordlistParser
     end
 
     def file1(parser)
-      parser.on("-l1", "--file1 FILE1") do |file1|
-        self.file1 = file1
+      parser.on("-l1", "--file1 FILE1") do |f1|
+        self.file1 = f1
       end
     end
 
     def file2(parser)
-      parser.on("-l2", "--file2 FILE2") do |file2|
-        self.file2 = file2
+      parser.on("-l2", "--file2 FILE2") do |f2|
+        self.file2 = f2
       end
     end
   end
@@ -59,14 +58,15 @@ class WordlistParser
 end # Class WordlistParser
 
 wordlist_parser = WordlistParser.new
-wordlist_parser.parse(ARGV)
-# file = File.new( "output-wordlist.txt", "w")
-# file.chmod( 0755 )
-# IO.foreach(options.file1) do |l|
- #  IO.foreach(options.file2) do |w|
-      # file.write(l + ':' + w + '\n')
-  # end
-#jend
-#file.close
+options = wordlist_parser.parse(ARGV)
+file = File.new( "output-wordlist.txt", "w")
+file.chmod( 0755 )
+binding.pry
+IO.foreach(options.file1) do |l|
+  IO.foreach(options.file2) do |w|
+     file.write(l + ':' + w + '\n')
+  end
+end
+file.close
 
 
