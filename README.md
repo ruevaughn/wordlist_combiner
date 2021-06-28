@@ -1,27 +1,37 @@
-HTTP Basic Auth brute force wordlist generator. Combines two wordlists into one
+##HTTP Basic Auth brute force wordlist generator. 
+---
 
-Usage
- ./combiner --file1 '/path/to/wordlist/users.txt' --file2 '/path/to/wordlist/passwords.txt'
+Combines two wordlists into one
 
-Takes two wordlists and combines them together for HTTP Basic Auth Enumeration
+>
+> Usage
+> ./combiner --file1 '/path/to/wordlist/users.txt' --file2 '/path/to/wordlist/passwords.txt'
+> 
 
-| users.txt |
+####Takes two wordlists and combines them together for HTTP Basic Auth Enumeration
+
+ users.txt 
 -------------
+
 | admin |
 | root  |
 | info  |
 | user  |
 
-| passwords.txt |
+ passwords.txt 
 -----------------
+
 | 1245 |
 | 123456 |
 | pass123 |
 
-and generates into a format thats easily enumerated when using Hydra THC, Burp Intruder, or like toos for enumerating and cracking HTTP BASIC Auth
+```
+Generates into a format thats easily enumerated when using Hydra THC, Burp Intruder, or like toos for enumerating and cracking HTTP BASIC Auth
+```
 
-| combined.txt |
+ combined.txt 
 ----------------
+
 | admin:1235 |
 | admin:123456 |
 |admin:pass123 |
