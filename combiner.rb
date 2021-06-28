@@ -12,7 +12,7 @@ class WordlistParser
 
   class ScriptOptions
 
-    attr_accessor :file1, :file2, :file3, :verbose, :encoding
+    attr_accessor :file1, :file2, :file3, :verbose,  :encoding
     def initialize
       self.verbose = true
       self.encoding = "utf8"
@@ -20,7 +20,7 @@ class WordlistParser
 
     def define_options(parser)
       parser.banner = "Usage: examble.rb -l1 file1 -l2 file2"
-      parser.seperator=""
+      parser.separator ""
 
       file1(parser)
       file2(parser)
@@ -46,17 +46,20 @@ class WordlistParser
     end
   end
 
-  def parse(*args)
-    options = OptionParser.new do |parser|
-      parser.define_options(options)
+  def parse(args)
+    @options = ScriptOptions.new
+    @args = OptionParser.new do |parser|
+      @options.define_options(parser)
+      parser.parse!(args)
     end
-   options 
+   @options 
   end
 
+  attr_reader :parser, :options
 end # Class WordlistParser
 
-wordlist = WordlistParser.new
-options = wordlist.parse(ARGV)
+wordlist_parser = WordlistParser.new
+wordlist_parser.parse(ARGV)
 # file = File.new( "output-wordlist.txt", "w")
 # file.chmod( 0755 )
 # IO.foreach(options.file1) do |l|
