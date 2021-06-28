@@ -61,12 +61,9 @@ wordlist_parser = WordlistParser.new
 options = wordlist_parser.parse(ARGV)
 file = File.new( "output-wordlist.txt", "w")
 file.chmod( 0755 )
-binding.pry
 IO.foreach(options.file1) do |l|
   IO.foreach(options.file2) do |w|
-     file.write(l + ':' + w + '\n')
+    file.write("#{l.strip}:#{w.strip}\n")
   end
 end
 file.close
-
-
