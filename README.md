@@ -1,4 +1,4 @@
-##HTTP Basic Auth brute force wordlist generator. 
+## HTTP Basic Auth brute force wordlist generator. 
 ---
 
 Combines two wordlists into one
@@ -8,7 +8,7 @@ Combines two wordlists into one
 > ./combiner --file1 '/path/to/wordlist/users.txt' --file2 '/path/to/wordlist/passwords.txt'
 > 
 
-####Takes two wordlists and combines them together for HTTP Basic Auth Enumeration
+#### Takes two wordlists and combines them together for HTTP Basic Auth Enumeration
 
  users.txt 
 -------------
