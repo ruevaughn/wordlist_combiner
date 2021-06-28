@@ -22,8 +22,8 @@ class WordlistParser
       parser.banner = "Usage: examble.rb -l1 file1 -l2 file2"
       parser.separator ""
 
-      file1(parser)
-      file2(parser)
+      file_opt1(parser)
+      file_opt2(parser)
 
       parser.on_tail("--version", "Show version") do
           puts Version
@@ -32,13 +32,13 @@ class WordlistParser
       self
     end
 
-    def file1(parser)
+    def file_opt1(parser)
       parser.on("-l1", "--file1 FILE1") do |f1|
         self.file1 = f1
       end
     end
 
-    def file2(parser)
+    def file_opt2(parser)
       parser.on("-l2", "--file2 FILE2") do |f2|
         self.file2 = f2
       end
