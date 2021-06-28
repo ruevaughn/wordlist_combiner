@@ -12,8 +12,8 @@ Combines two wordlists into one
 
  users.txt 
 -------------
-
----------
+|       |
+:--------
 | admin |
 | root  |
 | info  |
@@ -22,7 +22,8 @@ Combines two wordlists into one
  passwords.txt 
 -----------------
 
---------
+|      |
+:-------
 | 1245 |
 | 123456 |
 | pass123 |
